@@ -18,7 +18,9 @@ var questions = {
     "q3":[["a3","b3","c3","d3"] ,0],
     "q4":[["a4","b4","c4","d4"] ,1]
 }
-
+var nameInput = document.querySelector("#name");
+var nameButton = document.querySelector("#Enter-Name");
+var playerName="YOUR NAME";
 var scores = [];
 var highScoringPlayers=[];
 
@@ -77,14 +79,13 @@ var gameEnd = function(){
     console.log("first printed")
     for(var x = highScoringPlayers.length;x<4;x++){
         console.log(x)
-        answerButtons[i].textContent = "EMPTY";
+        answerButtons[x].textContent = "EMPTY";
     }
     console.log(earliest);
     if(earliest<4){
         //get name
-        var name ="YOUR NAME";
         //add to list at spot of earliest, 
-        highScoringPlayers.splice(earliest,0,name);
+        highScoringPlayers.splice(earliest,0,playerName);
         scores.splice(earliest,0,correct);
         //bump everything afterwards down
         if(highScoringPlayers.length>4){
@@ -96,6 +97,10 @@ var gameEnd = function(){
 
 
         answerButtons[i].textContent = highScoringPlayers[i]+" "+scores[i];
+    }
+    for(var x = highScoringPlayers.length;x<4;x++){
+        
+        answerButtons[x].textContent = "EMPTY";
     }
     console.log("updated with player")
     
@@ -119,6 +124,12 @@ var getNextQuestion = function(){
 
 
 }
+nameButton.addEventListener("click",function(event){
+    event.preventDefault();
+    playerName = document.querySelector("#name").value;
+
+
+})
 
 b1.addEventListener("click", function(){
         if(active){
