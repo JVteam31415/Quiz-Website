@@ -11,12 +11,12 @@ var answerButtons = [b1,b2,b3,b4];
 var timerEl = document.getElementById("countdown");
 var correct;
 var activeQuestion;
-var questionText = ["q1","q2","q3","q4"];
+var questionText = ["Which of these was NOT an axis power during WWII?","Who was in command of US forces in the Phillipenes?","Which did not serve on the Eastern Front?","Which was not a British Dominion at the time of the war's start?"];
 var questions = {
-    "q1":[["a","b","c","d"], 2],
-    "q2":[["a2","b2","c2","d2"] ,0],
-    "q3":[["a3","b3","c3","d3"] ,0],
-    "q4":[["a4","b4","c4","d4"] ,1]
+    "Which of these was NOT an axis power during WWII?":[["Thailand","Bulgaria","Yugoslavia","Slovakia"], 2],
+    "Who was in command of US forces in the Phillipenes?":[["MacArthur","Eisenhower","Patton","Nimitz"] ,0],
+    "Which did not serve on the Eastern Front?":[["Rommel","Mannstein","Bock","Paulus"] ,0],
+    "Which was not a British Dominion at the time of the war's start?":[["Canada","India","Australia","New Zealand"] ,1]
 }
 var nameInput = document.querySelector("#name");
 var nameButton = document.querySelector("#Enter-Name");
