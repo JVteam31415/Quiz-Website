@@ -11,12 +11,16 @@ var answerButtons = [b1,b2,b3,b4];
 var timerEl = document.getElementById("countdown");
 var correct;
 var activeQuestion;
-var questionText = ["q1","q2","q3"];
+var questionText = ["q1","q2","q3","q4"];
 var questions = {
     "q1":[["a","b","c","d"], 2],
     "q2":[["a2","b2","c2","d2"] ,0],
-    "q3":[["a3","b3","c3","d3"] ,0]
+    "q3":[["a3","b3","c3","d3"] ,0],
+    "q4":[["a4","b4","c4","d4"] ,1]
 }
+
+var scores = [];
+var highScoringPlayers=[];
 
 timerButton.addEventListener("click", function() {
     if(active){
@@ -61,12 +65,50 @@ var runClock = function(){
 var gameEnd = function(){
     q.textContent = "Quiz over. You got "+correct+" questions correct.";
     timeLeft=0;
+    var earliest = highScoringPlayers.length;
+    q.textContent="High Scores:";
+    for(var i=0;i<highScoringPlayers.length;i++){
+        console.log(i)
+        answerButtons[i].textContent = highScoringPlayers[i]+" "+scores[i];
+        if(scores[i]<correct){
+            earliest=i;
+        }
+    }
+    console.log("first printed")
+    for(var x = highScoringPlayers.length;x<4;x++){
+        console.log(x)
+        answerButtons[i].textContent = "EMPTY";
+    }
+    console.log(earliest);
+    if(earliest<4){
+        //get name
+        var name ="YOUR NAME";
+        //add to list at spot of earliest, 
+        highScoringPlayers.splice(earliest,0,name);
+        scores.splice(earliest,0,correct);
+        //bump everything afterwards down
+        if(highScoringPlayers.length>4){
+            highScoringPlayers.length = 4;
+            scores.length=4;
+        }
+    }
+    for(var i=0;i<highScoringPlayers.length;i++){
+
+
+        answerButtons[i].textContent = highScoringPlayers[i]+" "+scores[i];
+    }
+    console.log("updated with player")
+    
+
+    activeQuestion=-1;
+    timerButton.textContent="Start";
     console.log("done");
 }
 var getNextQuestion = function(){
     activeQuestion++;
     if(activeQuestion==questionText.length){
-        gameEnd();
+        //gameEnd();
+        timeLeft=0;
         return;
     }
     q.textContent = questionText[activeQuestion];
